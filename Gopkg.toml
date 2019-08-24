@@ -1,0 +1,10 @@
+[[constraint]]
+  name = "github.com/lib/pq"
+  version = "1.0.0"
+
+[prune]
+  go-tests = true
+  unused-packages = true
+[[constraint]]
+  name = "gopkg.in/DataDog/dd-trace-go.v1"
+  version = "1.10.0"
