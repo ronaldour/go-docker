@@ -19,7 +19,7 @@ CREATE TABLE books
  author character varying,
  pages integer,
  publication_date date,
- CONSTRAINT pk_books PRIMARY KEY (id )
+ CONSTRAINT pk_books PRIMARY KEY (id)
 )
 WITH (
  OIDS=FALSE

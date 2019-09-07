@@ -8,13 +8,9 @@ import (
 	"strconv"
 	"text/template"
 	"time"
-	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 func handleSaveBook(w http.ResponseWriter, r *http.Request) {
-	span := tracer.StartSpan("web.request", tracer.ResourceName("/save"))
-	defer span.Finish()
-	
 	var id = 0
 	var err error
 
@@ -69,8 +65,6 @@ func handleSaveBook(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleListBooks(w http.ResponseWriter, r *http.Request) {
-	span := tracer.StartSpan("web.request", tracer.ResourceName("/"))
-	defer span.Finish()
 	
 	books, err := allBooks()
 	if err != nil {
@@ -91,8 +85,6 @@ func handleListBooks(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleViewBook(w http.ResponseWriter, r *http.Request) {
-	span := tracer.StartSpan("web.request", tracer.ResourceName("/book"))
-	defer span.Finish()
 		
 	params := r.URL.Query()
 	idStr := params.Get("id")
@@ -131,8 +123,6 @@ func handleViewBook(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleDeleteBook(w http.ResponseWriter, r *http.Request) {
-	span := tracer.StartSpan("web.request", tracer.ResourceName("/delete"))
-  defer span.Finish()
 
 	params := r.URL.Query()
 	idStr := params.Get("id")
@@ -170,8 +160,6 @@ func renderErrorPage(w http.ResponseWriter, errorMsg error) {
 }
 
 func check(w http.ResponseWriter, r *http.Request) {
-	span := tracer.StartSpan("web.request", tracer.ResourceName("/check"))
-  defer span.Finish()
 
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("Success"))
