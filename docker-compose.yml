@@ -15,10 +15,12 @@ services:
     depends_on:
       - psql
   psql:
-    image: postgres:11
+    build:
+      context: ./datastore
+      dockerfile: Dockerfile
+    image: goapp-postgres:compose
     volumes:
-      - postgres-data:/var/lib/postgresql/data
-      - ./datastore:/docker-entrypoint-initdb.d
+      - postgres-data:/var/lib/postgresql/data      
     environment:
       POSTGRES_USER: demo
       POSTGRES_PASSWORD: admin123
